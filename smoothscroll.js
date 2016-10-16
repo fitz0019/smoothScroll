@@ -54,7 +54,13 @@ var position = function(start, end, elapsed, duration) {
 var smoothScroll = function(el, duration, callback, context, direction){
     duration = duration || 500;
     context = context || window;
-    var start = context.scrollTop || window.pageYOffset;
+    var start;
+
+    if (direction === 'horizontal') {
+        start = context.scrollLeft || window.pageXOffset;
+    } else {
+        start = context.scrollTop || window.pageYOffset;
+    }
 
     if (typeof el === 'number') {
       var end = parseInt(el);
